@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer - Calorie Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="display-4 mb-2">Disclaimer</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Disclaimer</li>
+                    </ol>
+                </nav>
+                <p class="text-muted">Last updated: August 16, 2025</p>
+            </div>
+        </div>
+
+        <!-- Disclaimer Content -->
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Important Medical Disclaimer</strong>
+                        </div>
+
+                        <h3>General Health Information</h3>
+                        <p>The information provided by the Calorie Calculator application is for educational and informational purposes only. It is not intended as a substitute for professional medical advice, diagnosis, or treatment.</p>
+
+                        <h4>Not Medical Advice</h4>
+                        <p>The BMR calculations, BMI assessments, and calorie recommendations provided by this application should not be considered medical advice. Always seek the advice of your physician or other qualified healthcare provider with any questions you may have regarding:</p>
+                        <ul>
+                            <li>Weight management programs</li>
+                            <li>Dietary changes</li>
+                            <li>Exercise routines</li>
+                            <li>Medical conditions affecting metabolism</li>
+                            <li>Eating disorders or unhealthy relationships with food</li>
+                        </ul>
+
+                        <h4>Calculation Limitations</h4>
+                        <p>Our calculations are based on widely accepted formulas including:</p>
+                        <ul>
+                            <li>Mifflin-St Jeor Equation</li>
+                            <li>Harris-Benedict Formula</li>
+                            <li>Katch-McArdle Formula</li>
+                        </ul>
+                        <p>However, these formulas provide estimates only and may not be accurate for all individuals, particularly those with:</p>
+                        <ul>
+                            <li>Medical conditions affecting metabolism</li>
+                            <li>Extreme body compositions</li>
+                            <li>Eating disorders</li>
+                            <li>Pregnancy or nursing</li>
+                            <li>Certain medications that affect metabolism</li>
+                        </ul>
+
+                        <h4>Individual Variation</h4>
+                        <p>Metabolic rates can vary significantly between individuals due to factors such as:</p>
+                        <ul>
+                            <li>Genetics</li>
+                            <li>Medical conditions</li>
+                            <li>Medications</li>
+                            <li>Hormonal factors</li>
+                            <li>Body composition</li>
+                            <li>Previous dieting history</li>
+                        </ul>
+
+                        <h4>Weight Management Safety</h4>
+                        <p>The weight management recommendations provided should be used with caution:</p>
+                        <ul>
+                            <li>Extreme calorie restrictions can be dangerous</li>
+                            <li>Rapid weight loss may not be healthy or sustainable</li>
+                            <li>Individual needs vary based on health status</li>
+                            <li>Professional guidance is recommended for significant weight changes</li>
+                        </ul>
+
+                        <h4>BMI Limitations</h4>
+                        <p>BMI calculations have known limitations and may not accurately reflect health status for:</p>
+                        <ul>
+                            <li>Athletes with high muscle mass</li>
+                            <li>Elderly individuals</li>
+                            <li>Children and adolescents</li>
+                            <li>Pregnant women</li>
+                            <li>Individuals with certain medical conditions</li>
+                        </ul>
+
+                        <h4>No Warranty</h4>
+                        <p>This application is provided "as is" without any warranty of accuracy, completeness, or fitness for a particular purpose. We do not warrant that the calculations will meet your individual health needs or requirements.</p>
+
+                        <h4>Liability Limitation</h4>
+                        <p>To the fullest extent permitted by law, we disclaim all liability for any damages arising from the use of this calculator, including but not limited to health complications, weight management issues, or medical problems.</p>
+
+                        <h4>Professional Consultation Recommended</h4>
+                        <p>Before making significant changes to your diet, exercise routine, or lifestyle based on our calculations, we strongly recommend consulting with:</p>
+                        <ul>
+                            <li>Your primary care physician</li>
+                            <li>A registered dietitian</li>
+                            <li>A certified fitness professional</li>
+                            <li>Other qualified healthcare providers</li>
+                        </ul>
+
+                        <div class="alert alert-info mt-4">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Remember:</strong> Your health and safety are paramount. Use this tool as a starting point for discussions with healthcare professionals, not as a replacement for professional medical advice.
+                        </div>
+
+                        <h4>Contact Information</h4>
+                        <p>If you have questions about this disclaimer or our application:</p>
+                        <div class="alert alert-secondary">
+                            <strong>Ashrafuzzaman</strong><br>
+                            Email: <a href="mailto:ashrafuzzamanpartho@gmail.com">ashrafuzzamanpartho@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-2">&copy; 2025 Calorie Calculator. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="{{ url_for('contact') }}" class="text-decoration-none me-3">Contact Us</a>
+                        <a href="{{ url_for('privacy') }}" class="text-decoration-none me-3">Privacy Policy</a>
+                        <a href="{{ url_for('disclaimer') }}" class="text-decoration-none me-3">Disclaimer</a>
+                        <a href="{{ url_for('terms') }}" class="text-decoration-none">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

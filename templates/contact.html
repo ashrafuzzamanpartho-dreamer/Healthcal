@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Calorie Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="display-4 mb-2">Contact Us</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0"><i class="fas fa-envelope me-2"></i>Get in Touch</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="fas fa-user me-2"></i>Developer</h5>
+                                <p class="text-muted mb-3">For technical support, feature requests, or general inquiries about the Calorie Calculator application.</p>
+                                
+                                <div class="contact-info">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="fas fa-user-circle text-primary me-3 fs-4"></i>
+                                        <div>
+                                            <strong>Ashrafuzzaman</strong>
+                                            <br>
+                                            <small class="text-muted">Lead Developer</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="fas fa-envelope text-primary me-3 fs-4"></i>
+                                        <div>
+                                            <a href="mailto:ashrafuzzamanpartho@gmail.com" class="text-decoration-none">
+                                                ashrafuzzamanpartho@gmail.com
+                                            </a>
+                                            <br>
+                                            <small class="text-muted">Primary contact email</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h5><i class="fas fa-question-circle me-2"></i>What can we help you with?</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Technical support and bug reports</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Feature requests and suggestions</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Questions about BMR calculations</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Integration and API inquiries</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>General feedback and improvement ideas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Response Time:</strong> We typically respond to emails within 24-48 hours during business days.
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <a href="mailto:ashrafuzzamanpartho@gmail.com" class="btn btn-primary btn-lg">
+                                <i class="fas fa-envelope me-2"></i>Send Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-2">&copy; 2025 Calorie Calculator. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="{{ url_for('contact') }}" class="text-decoration-none me-3">Contact Us</a>
+                        <a href="{{ url_for('privacy') }}" class="text-decoration-none me-3">Privacy Policy</a>
+                        <a href="{{ url_for('disclaimer') }}" class="text-decoration-none me-3">Disclaimer</a>
+                        <a href="{{ url_for('terms') }}" class="text-decoration-none">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
