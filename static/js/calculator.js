@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize energy converter
     initializeEnergyConverter();
+
+    // Setup gender sync fix
+    setupFormSync();
 });
 
 function initializeCalculator() {
@@ -53,60 +56,46 @@ function setupEventListeners() {
     unitTabs.forEach(tab => {
         tab.addEventListener('shown.bs.tab', syncFormValues);
     });
-    
-    // Form input synchronization between tabs
-    setupFormSync();
+}
+
+// --- Gender Sync Fix ---
+function syncCalorieGender() {
+    const us = document.querySelectorAll('input[name="gender_us"]');
+    const metric = document.querySelectorAll('input[name="gender_metric"]');
+
+    function apply(value) {
+        us.forEach(r => r.checked = (r.value === value));
+        metric.forEach(r => r.checked = (r.value === value));
+    }
+
+    [...us, ...metric].forEach(r => {
+        r.addEventListener('change', () => {
+            if (r.checked) apply(r.value);
+        });
+    });
+}
+
+function syncBMIGender() {
+    const us = document.querySelectorAll('input[name="bmi_gender_us"]');
+    const metric = document.querySelectorAll('input[name="bmi_gender_metric"]');
+
+    function apply(value) {
+        us.forEach(r => r.checked = (r.value === value));
+        metric.forEach(r => r.checked = (r.value === value));
+    }
+
+    [...us, ...metric].forEach(r => {
+        r.addEventListener('change', () => {
+            if (r.checked) apply(r.value);
+        });
+    });
 }
 
 function setupFormSync() {
-    // Sync age between calorie calculator tabs
-    const ageInputs = document.querySelectorAll('input[name="age"]');
-    ageInputs.forEach(input => {
-        input.addEventListener('input', function() {
-            ageInputs.forEach(other => {
-                if (other !== input) {
-                    other.value = input.value;
-                }
-            });
-        });
-    });
-    
-    // Sync gender between calorie calculator tabs
-    const genderInputs = document.querySelectorAll('input[name="gender"]');
-    genderInputs.forEach(input => {
-        input.addEventListener('change', function () {
-            if (input.checked) {
-                genderInputs.forEach(other => {
-                    other.checked = (other.value === input.value);
-                });
-            }
-        });
-    });
-    
-    // Sync BMI age between tabs
-    const bmiAgeInputs = document.querySelectorAll('input[name="bmi_age"]');
-    bmiAgeInputs.forEach(input => {
-        input.addEventListener('input', function() {
-            bmiAgeInputs.forEach(other => {
-                if (other !== input) {
-                    other.value = input.value;
-                }
-            });
-        });
-    });
-    
-    // Sync BMI gender between tabs
-    const bmiGenderInputs = document.querySelectorAll('input[name="bmi_gender"]');
-    bmiGenderInputs.forEach(input => {
-        input.addEventListener('change', function () {
-            if (input.checked) {
-                bmiGenderInputs.forEach(other => {
-                    other.checked = (other.value === input.value);
-                });
-            }
-        });
-    });
+    syncCalorieGender();
+    syncBMIGender();
 }
+// --- End Gender Sync Fix ---
 
 function syncFormValues() {
     // This function can be used to sync values between different unit systems
@@ -299,22 +288,13 @@ function displayBMIResults(data) {
 }
 
 function showError(message) {
-    // Remove existing error messages
     clearErrors();
-    
-    // Create error element
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error';
     errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
-    
-    // Insert error message at the top of the container
     const container = document.querySelector('.container');
     container.insertBefore(errorDiv, container.firstChild);
-    
-    // Scroll to error message
     errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    
-    // Auto-remove after 5 seconds
     setTimeout(() => {
         if (errorDiv.parentNode) {
             errorDiv.parentNode.removeChild(errorDiv);
@@ -359,7 +339,7 @@ function validateHeight(height, unit = 'cm') {
     }
 }
 
-// Export functions for testing (if needed)
+// Export functions for testing
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         validateAge,
@@ -367,30 +347,3 @@ if (typeof module !== 'undefined' && module.exports) {
         validateHeight
     };
 }
-document.addEventListener("DOMContentLoaded", () => {
-  function syncRadios(selector, storageKey) {
-    const radios = document.querySelectorAll(selector);
-
-    // Restore from sessionStorage
-    const saved = sessionStorage.getItem(storageKey);
-    if (saved) {
-      radios.forEach(r => { r.checked = (r.value === saved); });
-    }
-
-    // When one changes, update all + persist
-    radios.forEach(radio => {
-      radio.addEventListener("change", () => {
-        if (radio.checked) {
-          radios.forEach(r => { r.checked = (r.value === radio.value); });
-          sessionStorage.setItem(storageKey, radio.value);
-        }
-      });
-    });
-  }
-
-  // Apply to Calorie Calculator (name="gender")
-  syncRadios('input[name="gender"]', "calorie_gender");
-
-  // Apply to BMI Calculator (name="bmi_gender")
-  syncRadios('input[name="bmi_gender"]', "bmi_gender");
-});
