@@ -367,3 +367,30 @@ if (typeof module !== 'undefined' && module.exports) {
         validateHeight
     };
 }
+document.addEventListener("DOMContentLoaded", () => {
+  function syncRadios(selector, storageKey) {
+    const radios = document.querySelectorAll(selector);
+
+    // Restore from sessionStorage
+    const saved = sessionStorage.getItem(storageKey);
+    if (saved) {
+      radios.forEach(r => { r.checked = (r.value === saved); });
+    }
+
+    // When one changes, update all + persist
+    radios.forEach(radio => {
+      radio.addEventListener("change", () => {
+        if (radio.checked) {
+          radios.forEach(r => { r.checked = (r.value === radio.value); });
+          sessionStorage.setItem(storageKey, radio.value);
+        }
+      });
+    });
+  }
+
+  // Apply to Calorie Calculator (name="gender")
+  syncRadios('input[name="gender"]', "calorie_gender");
+
+  // Apply to BMI Calculator (name="bmi_gender")
+  syncRadios('input[name="bmi_gender"]', "bmi_gender");
+});
