@@ -1,5 +1,5 @@
-
-<!DOCTYPE html>
+<head>
+   <!DOCTYPE html>
 <html lang="en">
      <link rel="icon" href="data:image/svg+xml,
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
@@ -9,117 +9,549 @@
 <line x1='20' y1='38' x2='44' y2='38' stroke='white' stroke-width='4'/>
 </svg>" type="image/svg+xml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calorie Calculator - Calculator.net</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Calculator - Calculator.net</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div class="container my-4">
-        <!-- Header -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <h1 class="display-4 mb-2">Calorie Calculator</h1>
-                <p class="lead">The Calorie Calculator can be used to estimate the number of calories a person needs to consume each day.</p>
-            </div>
+  <div class="container my-4">
+    <!-- Header -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h1 class="display-4 mb-2">Calorie Calculator</h1>
+        <p class="lead">
+          The Calorie Calculator can be used to estimate the number of calories a person needs to consume each day.
+          This calculator can also provide some simple guidelines for gaining or losing weight.
+        </p>
+        <div class="alert alert-info d-flex align-items-center">
+          <i class="fas fa-info-circle me-2"></i>
+          <span>Modify the values and click the calculate button to use</span>
         </div>
-
-        <!-- Calorie Calculator -->
-        <div class="card mb-5">
-            <div class="card-header"><h3 class="mb-0">Calorie Calculator</h3></div>
-            <div class="card-body">
-                <form id="calorieForm">
-                    <ul class="nav nav-tabs mb-3" id="unitTabs" role="tablist">
-                        <li class="nav-item">
-                            <button class="nav-link active" id="us-units-tab" data-bs-toggle="tab" data-bs-target="#us-units" type="button">US Units</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" id="metric-units-tab" data-bs-toggle="tab" data-bs-target="#metric-units" type="button">Metric Units</button>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content">
-                        <!-- US Units -->
-                        <div class="tab-pane fade show active" id="us-units">
-                            <div class="mb-3">
-                                <label class="form-label">Gender</label>
-                                <div>
-                                    <input type="radio" class="form-check-input" name="gender_us" value="male" id="male_us" checked>
-                                    <label for="male_us">Male</label>
-                                    <input type="radio" class="form-check-input" name="gender_us" value="female" id="female_us">
-                                    <label for="female_us">Female</label>
-                                </div>
-                            </div>
-                            <!-- other US inputs -->
-                        </div>
-
-                        <!-- Metric Units -->
-                        <div class="tab-pane fade" id="metric-units">
-                            <div class="mb-3">
-                                <label class="form-label">Gender</label>
-                                <div>
-                                    <input type="radio" class="form-check-input" name="gender_metric" value="male" id="male_metric" checked>
-                                    <label for="male_metric">Male</label>
-                                    <input type="radio" class="form-check-input" name="gender_metric" value="female" id="female_metric">
-                                    <label for="female_metric">Female</label>
-                                </div>
-                            </div>
-                            <!-- other Metric inputs -->
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Calculate</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- BMI Calculator -->
-        <div class="card mb-5">
-            <div class="card-header"><h3 class="mb-0">BMI Calculator</h3></div>
-            <div class="card-body">
-                <form id="bmiForm">
-                    <ul class="nav nav-tabs mb-3" id="bmiUnitTabs" role="tablist">
-                        <li class="nav-item">
-                            <button class="nav-link active" id="bmi-us-units-tab" data-bs-toggle="tab" data-bs-target="#bmi-us-units" type="button">US Units</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" id="bmi-metric-units-tab" data-bs-toggle="tab" data-bs-target="#bmi-metric-units" type="button">Metric Units</button>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content">
-                        <!-- BMI US -->
-                        <div class="tab-pane fade show active" id="bmi-us-units">
-                            <div class="mb-3">
-                                <label class="form-label">Gender</label>
-                                <div>
-                                    <input type="radio" class="form-check-input" name="bmi_gender_us" value="male" id="bmi_male_us" checked>
-                                    <label for="bmi_male_us">Male</label>
-                                    <input type="radio" class="form-check-input" name="bmi_gender_us" value="female" id="bmi_female_us">
-                                    <label for="bmi_female_us">Female</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- BMI Metric -->
-                        <div class="tab-pane fade" id="bmi-metric-units">
-                            <div class="mb-3">
-                                <label class="form-label">Gender</label>
-                                <div>
-                                    <input type="radio" class="form-check-input" name="bmi_gender_metric" value="male" id="bmi_male_metric" checked>
-                                    <label for="bmi_male_metric">Male</label>
-                                    <input type="radio" class="form-check-input" name="bmi_gender_metric" value="female" id="bmi_female_metric">
-                                    <label for="bmi_female_metric">Female</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Calculate BMI</button>
-                </form>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <!-- Calorie Calculator Section -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title mb-0">Calorie Calculator</h3>
+          </div>
+          <div class="card-body">
+            <form id="calorieForm">
+              <input type="hidden" name="calc_type" value="calorie">
+              <ul class="nav nav-tabs mb-3" id="unitTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="us-units-tab" data-bs-toggle="tab" data-bs-target="#us-units" type="button" role="tab">US Units</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="metric-units-tab" data-bs-toggle="tab" data-bs-target="#metric-units" type="button" role="tab">Metric Units</button>
+                </li>
+              </ul>
+
+              <div class="tab-content" id="unitTabsContent">
+                <!-- US Units Tab -->
+                <div class="tab-pane fade show active" id="us-units" role="tabpanel">
+                  <input type="hidden" name="unit_system" value="us">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" class="form-control" name="age" min="15" max="80" value="25" required>
+                        <div class="form-text">ages 15 - 80</div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" value="male" id="male" checked>
+                            <label class="form-check-label" for="male">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" value="female" id="female">
+                            <label class="form-check-label" for="female">Female</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Height</label>
+                        <div class="row">
+                          <div class="col-6">
+                            <input type="number" class="form-control" name="feet" placeholder="feet" min="3" max="8" value="5">
+                          </div>
+                          <div class="col-6">
+                            <input type="number" class="form-control" name="inches" placeholder="inches" min="0" max="11" value="10">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="weight_lbs" class="form-label">Weight</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control" name="weight_lbs" step="0.1" min="50" max="1000" value="160" required>
+                          <span class="input-group-text">pounds</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="activity_level" class="form-label">Activity Level</label>
+                        <select class="form-select" name="activity_level" required>
+                          <option value="bmr">Basal Metabolic Rate (BMR)</option>
+                          <option value="sedentary" selected>Sedentary: little or no exercise</option>
+                          <option value="light">Light: exercise 1-3 times/week</option>
+                          <option value="moderate">Moderate: exercise 4-5 times/week</option>
+                          <option value="active">Active: daily exercise or intense exercise 3-4 times/week</option>
+                          <option value="very_active">Very Active: intense exercise 6-7 times/week</option>
+                          <option value="extra_active">Extra Active: very intense exercise daily, or physical job</option>
+                        </select>
+                      </div>
+
+                      <div class="settings-panel">
+                        <button type="button" class="btn btn-outline-secondary btn-sm mb-2" data-bs-toggle="collapse" data-bs-target="#advancedSettings">
+                          <i class="fas fa-cog"></i> Settings
+                        </button>
+                        <div class="collapse" id="advancedSettings">
+                          <div class="card card-body">
+                            <div class="mb-3">
+                              <label class="form-label">Results unit:</label>
+                              <div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="results_unit" value="calories" id="calories" checked>
+                                  <label class="form-check-label" for="calories">Calories</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="results_unit" value="kilojoules" id="kilojoules">
+                                  <label class="form-check-label" for="kilojoules">Kilojoules</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="mb-3">
+                              <label for="bmr_formula" class="form-label">BMR estimation formula:</label>
+                              <select class="form-select" name="bmr_formula">
+                                <option value="mifflin_st_jeor" selected>Mifflin St Jeor</option>
+                                <option value="harris_benedict">Revised Harris-Benedict</option>
+                                <option value="katch_mcardle">Katch-McArdle</option>
+                              </select>
+                            </div>
+                            <div class="mb-3" id="bodyFatGroup" style="display: none;">
+                              <label for="body_fat" class="form-label">Body Fat %:</label>
+                              <input type="number" class="form-control" name="body_fat" step="0.1" min="3" max="50" value="15">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Metric Units Tab -->
+                <div class="tab-pane fade" id="metric-units" role="tabpanel">
+                  <input type="hidden" name="unit_system" value="metric">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="age_metric" class="form-label">Age</label>
+                        <input type="number" class="form-control" name="age" min="15" max="80" value="25" required>
+                        <div class="form-text">ages 15 - 80</div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" value="male" id="male_metric" checked>
+                            <label class="form-check-label" for="male_metric">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" value="female" id="female_metric">
+                            <label class="form-check-label" for="female_metric">Female</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="height_cm" class="form-label">Height</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control" name="height_cm" step="0.1" min="100" max="250" value="178" required>
+                          <span class="input-group-text">cm</span>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="weight_kg" class="form-label">Weight</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control" name="weight_kg" step="0.1" min="20" max="500" value="73" required>
+                          <span class="input-group-text">kg</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="activity_level_metric" class="form-label">Activity Level</label>
+                        <select class="form-select" name="activity_level" required>
+                          <option value="bmr">Basal Metabolic Rate (BMR)</option>
+                          <option value="sedentary" selected>Sedentary: little or no exercise</option>
+                          <option value="light">Light: exercise 1-3 times/week</option>
+                          <option value="moderate">Moderate: exercise 4-5 times/week</option>
+                          <option value="active">Active: daily exercise or intense exercise 3-4 times/week</option>
+                          <option value="very_active">Very Active: intense exercise 6-7 times/week</option>
+                          <option value="extra_active">Extra Active: very intense exercise daily, or physical job</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-calculator"></i> Calculate</button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Activity Level Explanations -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="alert alert-light">
+                  <h6>Activity Level Guidelines:</h6>
+                  <ul class="mb-0">
+                    <li><strong>Exercise:</strong> 15‑30 minutes of elevated heart rate activity.</li>
+                    <li><strong>Intense exercise:</strong> 45‑120 minutes of elevated heart rate activity.</li>
+                    <li><strong>Very intense exercise:</strong> 2+ hours of elevated heart rate activity.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Results -->
+            <div id="calorieResults" class="mt-4" style="display: none;">
+              <div class="card bg-light">
+                <div class="card-header">
+                  <h5 class="card-title mb-0"><i class="fas fa-chart-line"></i> Results
+                    <button class="btn btn-outline-secondary btn-sm float-end" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6>Daily Calorie Needs:</h6>
+                      <div class="result-item">
+                        <strong id="dailyCalories">0</strong> <span id="resultsUnit">Calories/day</span>
+                      </div>
+                      <p class="text-muted" id="activityDescription"></p>
+
+                      <h6 class="mt-3">Basal Metabolic Rate (BMR):</h6>
+                      <div class="result-item">
+                        <strong id="bmrValue">0</strong> <span id="bmrUnit">Calories/day</span>
+                      </div>
+                      <p class="text-muted">Formula used: <span id="formulaUsed"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                      <h6>Weight Management:</h6>
+                      <table class="table table-sm">
+                        <tr>
+                          <td>Extreme weight loss</td>
+                          <td><strong id="extremeLoss">0</strong> <span class="unit-label">cal/day</span></td>
+                          <td class="text-muted">2 lb/week</td>
+                        </tr>
+                        <tr>
+                          <td>Weight loss</td>
+                          <td><strong id="moderateLoss">0</strong> <span class="unit-label">cal/day</span></td>
+                          <td class="text-muted">1 lb/week</td>
+                        </tr>
+                        <tr>
+                          <td>Mild weight loss</td>
+                          <td><strong id="mildLoss">0</strong> <span class="unit-label">cal/day</span></td>
+                          <td class="text-muted">0.5 lb/week</td>
+                        </tr>
+                        <tr class="table-warning">
+                          <td><strong>Maintain weight</strong></td>
+                          <td><strong id="maintain">0</strong> <span class="unit-label">cal/day</span></td>
+                          <td class="text-muted">0 lb/week</td>
+                        </tr>
+                        <tr>
+                          <td>Mild weight gain</td>
+                          <td><strong id="mildGain">0</strong> <span class="unit-label">cal/day</span></td>
+                          <td class="text-muted">0.5 lb/week</td>
+                        </tr>
+                        <tr>
+                          <td>Weight gain</td>
+                          <td><strong id="moderateGain">0</strong> <span class="unit-label">cal/day</span></td>
+                          <td class="text-muted">1 lb/week</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BMI Calculator Section -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title mb-0">BMI Calculator</h3>
+          </div>
+          <div class="card-body">
+            <form id="bmiForm">
+              <input type="hidden" name="calc_type" value="bmi">
+              <ul class="nav nav-tabs mb-3" id="bmiUnitTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="bmi-us-units-tab" data-bs-toggle="tab" data-bs-target="#bmi-us-units" type="button" role="tab">US Units</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="bmi-metric-units-tab" data-bs-toggle="tab" data-bs-target="#bmi-metric-units" type="button" role="tab">Metric Units</button>
+                </li>
+              </ul>
+
+              <div class="tab-content" id="bmiUnitTabsContent">
+                <!-- BMI US Units Tab -->
+                <div class="tab-pane fade show active" id="bmi-us-units" role="tabpanel">
+                  <input type="hidden" name="bmi_unit_system" value="us">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="bmi_age" class="form-label">Age</label>
+                        <input type="number" class="form-control" name="bmi_age" min="2" max="120" value="25" required>
+                        <div class="form-text">ages: 2 - 120</div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="bmi_gender" value="male" id="bmi_male" checked>
+                            <label class="form-check-label" for="bmi_male">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="bmi_gender" value="female" id="bmi_female">
+                            <label class="form-check-label" for="bmi_female">Female</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Height</label>
+                        <div class="row">
+                          <div class="col-6">
+                            <input type="number" class="form-control" name="bmi_feet" placeholder="feet" min="2" max="8" value="5">
+                          </div>
+                          <div class="col-6">
+                            <input type="number" class="form-control" name="bmi_inches" placeholder="inches" min="0" max="11" value="10">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="bmi_weight_lbs" class="form-label">Weight</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control" name="bmi_weight_lbs" step="0.1" min="30" max="1000" value="160" required>
+                          <span class="input-group-text">pounds</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- BMI Metric Units Tab -->
+                <div class="tab-pane fade" id="bmi-metric-units" role="tabpanel">
+                  <input type="hidden" name="bmi_unit_system" value="metric">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="bmi_age_metric" class="form-label">Age</label>
+                        <input type="number" class="form-control" name="bmi_age" min="2" max="120" value="25" required>
+                        <div class="form-text">ages: 2 - 120</div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="bmi_gender" value="male" id="bmi_male_metric" checked>
+                            <label class="form-check-label" for="bmi_male_metric">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="bmi_gender" value="female" id="bmi_female_metric">
+                            <label class="form-check-label" for="bmi_female_metric">Female</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="bmi_height_cm" class="form-label">Height</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control" name="bmi_height_cm" step="0.1" min="50" max="250" value="178" required>
+                          <span class="input-group-text">cm</span>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="bmi_weight_kg" class="form-label">Weight</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control" name="bmi_weight_kg" step="0.1" min="10" max="500" value="73" required>
+                          <span class="input-group-text">kg</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-calculator"></i> Calculate BMI</button>
+                </div>
+              </div>
+            </form>
+
+            <!-- BMI Results -->
+            <div id="bmiResults" class="mt-4" style="display: none;">
+              <div class="card bg-light">
+                <div class="card-header">
+                  <h5 class="card-title mb-0"><i class="fas fa-chart-bar"></i> BMI Result
+                    <button class="btn btn-outline-secondary btn-sm float-end" onclick="window.print()"><i class="fas fa-save"></i> Save</button>
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="bmi-gauge">
+                        <div class="bmi-value">
+                          <h2>BMI = <span id="bmiValue">0</span> kg/m²</h2>
+                          <h4 class="text-primary">(<span id="bmiClassification">Normal</span>)</h4>
+                        </div>
+                        <div class="bmi-scale mt-3">
+                          <div class="scale-bar">
+                            <div class="scale-section underweight">Underweight</div>
+                            <div class="scale-section normal">Normal</div>
+                            <div class="scale-section overweight">Overweight</div>
+                            <div class="scale-section obesity">Obesity</div>
+                          </div>
+                          <div class="scale-numbers mt-1">
+                            <span>16</span> <span>17</span> <span>18.5</span> <span>25</span> <span>30</span> <span>35</span> <span>40</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <ul class="list-unstyled">
+                        <li><strong>Healthy BMI range:</strong> 18.5 kg/m² – 25 kg/m²</li>
+                        <li><strong>Healthy weight for your height:</strong> <span id="healthyWeightRange">0 – 0</span></li>
+                        <li><strong>BMI Prime:</strong> <span id="bmiPrime">0</span></li>
+                        <li><strong>Ponderal Index:</strong> <span id="ponderalIndex">0</span> kg/m³</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Food Energy Converter Section -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="card"> 
+          <div class="card-header">
+            <h3 class="card-title mb-0">Food Energy Converter</h3>
+          </div>
+          <div class="card-body">
+            <p>The following converter can be used to convert between Calories and other common food energy units.</p>
+            <form id="energyForm" class="mb-3">
+              <input type="hidden" name="calc_type" value="energy">
+              <div class="row align-items-center">
+                <div class="col-md-3">
+                  <input type="number" class="form-control" name="energy_value" step="0.0001" value="1" required>
+                </div>
+                <div class="col-md-3">
+                  <select class="form‑select" name="energy_from_unit">
+                    <option value="cal_nutritional">Calorie [Nutritional, kcal]</option>
+                    <option value="cal_small">calorie [cal]</option>
+                    <option value="kilojoules">Kilojoules [kJ]</option>
+                    <option value="joules">joules [J]</option>
+                  </select>
+                </div>
+                <div class="col-md-1 text-center"><strong>=</strong></div>
+                <div class="col-md-2">
+                  <span id="convertedValue" class="form-control-plaintext fw-bold">4.1868</span>
+                </div>
+                <div class="col-md-3">
+                  <select class="form‑select" name="energy_to_unit">
+                    <option value="cal_nutritional">Calorie [Nutritional, kcal]</option>
+                    <option value="cal_small">calorie [cal]</option>
+                    <option value="kilojoules" selected>Kilojoules [kJ]</option>
+                    <option value="joules">joules [J]</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Information -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5>About the Formulas</h5>
+            <p>This Calorie Calculator is based on several equations, and the results of the calculator are based on an estimated average. The three equations used by the calculator are:</p>
+            <div class="row">
+              <div class="col-md-4">
+                <h6>Mifflin-St Jeor Equation:</h6>
+                <p><strong>For men:</strong><br>BMR = 10W + 6.25H - 5A + 5</p>
+                <p><strong>For women:</strong><br>BMR = 10W + 6.25H - 5A - 161</p>
+              </div>
+              <div class="col-md-4">
+                <h6>Revised Harris-Benedict Equation:</h6>
+                <p><strong>For men:</strong><br>BMR = 13.397W + 4.799H - 5.677A + 88.362</p>
+                <p><strong>For women:</strong><br>BMR = 9.247W + 3.098H - 4.330A + 447.593</p>
+              </div>
+              <div class="col-md-4">
+                <h6>Katch-McArdle Formula:</h6>
+                <p>BMR = 370 + 21.6(1 - F)W</p>
+                <p class="small">where: W is body weight in kg, H is body height in cm, A is age, F is body fat in percentage</p>
+              </div>
+            </div>
+            <p class="mt-3">
+              The Mifflin‑St Jeor Equation is considered the most accurate equation for calculating BMR with the exception that the Katch‑McArdle Formula can be more accurate for people who are leaner and know their body fat percentage.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <p class="mb-2">&copy; 2025 Calorie Calculator. All rights reserved.</p>
+            <div class="footer-links">
+              <a href="{{ url_for('contact') }}" class="text-decoration-none me-3">Contact Us</a>
+              <a href="{{ url_for('privacy') }}" class="text-decoration-none me-3">Privacy Policy</a>
+              <a href="{{ url_for('disclaimer') }}" class="text-decoration-none me-3">Disclaimer</a>
+              <a href="{{ url_for('terms') }}" class="text-decoration-none">Terms & Conditions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
+</body>
+</html>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
