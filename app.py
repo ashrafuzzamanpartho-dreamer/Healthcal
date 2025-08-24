@@ -160,13 +160,14 @@ def contact():
 @app.route('/privacy')
 def privacy():
     """Privacy policy page"""
-    return render_template('privacy.html')
+    return render_template('privacy.tml')
 
 @app.route('/disclaimer')
 def disclaimer():
     """Disclaimer page"""
     return render_template('disclaimer.html')
     
+app = Flask(__name__, static_folder='static', static_url_path='')
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory('.', 'sitemap.xml', mimetype='application/xml')
