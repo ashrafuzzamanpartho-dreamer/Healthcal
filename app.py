@@ -166,6 +166,10 @@ def privacy():
 def disclaimer():
     """Disclaimer page"""
     return render_template('disclaimer.html')
+    
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('.', 'sitemap.xml', mimetype='application/xml')
 
 @app.route('/terms')
 def terms():
