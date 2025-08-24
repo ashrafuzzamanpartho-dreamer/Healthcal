@@ -175,6 +175,9 @@ def sitemap():
 def terms():
     """Terms and conditions page"""
     return render_template('terms.html')
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(app.static_folder, 'robots.txt')
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
