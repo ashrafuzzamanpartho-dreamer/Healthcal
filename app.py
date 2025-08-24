@@ -167,7 +167,6 @@ def disclaimer():
     """Disclaimer page"""
     return render_template('disclaimer.html')
     
-app = Flask(__name__, static_folder='static', static_url_path='')
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory('.', 'sitemap.xml', mimetype='application/xml')
